@@ -1,85 +1,84 @@
-# Knowledge Share
+# markdown-docs
 
-Markdownベースのナレッジ共有プロジェクトです。
+個人用のドキュメントを Markdown で管理するためのリポジトリです。
 
-## 概要
+メモ、ガイド、チュートリアル、スライド原稿を 1 か所にまとめ、
+フォーマットと文章品質のチェックをかけながら保守できるようにして
+います。
 
-このプロジェクトは、Markdownを使用した文書作成とナレッジ共有を目的としています。Prettierによる自動フォーマットとMarkdownlintによる品質チェックを導入しています。
+## このリポジトリで管理するもの
+
+- 普段使う Markdown の書き方や運用ルール
+- 手順書や覚え書き
+- 学習用のサンプル文書
+- Marp を使ったスライド原稿
+
+公開用サイトを生成するためのリポジトリではなく、Markdown ファイルを
+継続的に整理・更新していくための個人用ストックとして使う想定です。
+
+## docs 配下の役割
+
+- `docs/README.md`: ドキュメント置き場の入口
+- `docs/guides/`: 執筆ルールや運用ガイド
+- `docs/tutorials/`: 基本操作やサンプル
+- `docs/marp/`: Marp スライド関連の資料
+- `themes/`: スライド用テーマなどの補助ファイル
 
 ## セットアップ
 
 ### 前提条件
 
-- Node.js (version 16以上)
-- npm または yarn
+- Node.js 16 以上
+- npm
 
 ### インストール
-
-### 依存関係のインストール
 
 ```bash
 npm install
 ```
 
-### 開発用スクリプト
+依存関係をインストールすると、`simple-git-hooks` により pre-commit hook が
+設定されます。コミット前には `npm run lint` が実行されます。
+
+## 使い方
+
+文書は主に `docs/` 配下に追加・編集します。整形や品質チェックの対象も
+`docs/**/*.md` です。
 
 ```bash
-# Markdownファイルをフォーマット
+# Markdown を整形
 npm run format
 
-# フォーマットチェック
+# 整形結果をチェック
 npm run format:check
 
-# Markdownlint実行
+# markdownlint + textlint を実行
 npm run lint
 
-# Markdownlint自動修正
+# markdownlint + textlint を自動修正
 npm run lint:fix
 ```
 
-## 推奨VS Code拡張機能
+## 品質管理
 
-このプロジェクトでは以下の拡張機能を推奨しています：
+このリポジトリでは、Markdown を書きっぱなしにせず、最低限の自動チェック
+を入れています。
 
-- **Prettier - Code formatter**: コードの自動フォーマット
-- **markdownlint**: Markdownの品質チェック
-- **Markdown All in One**: Markdown編集支援
-- **Markdown Preview Enhanced**: プレビュー機能強化
-- **Markdown Preview Mermaid Support**: Mermaid図表サポート
+- Prettier: 体裁の統一
+- markdownlint: Markdown 記法のチェック
+- textlint: 日本語文章のチェック
+- simple-git-hooks: pre-commit 時の lint 実行
 
-## フォーマット設定
+## 編集メモ
 
-- **行の長さ**: 80文字
-- **インデント**: スペース2文字
-- **改行コード**: LF
-- **文末セミコロン**: なし
-- **クォート**: シングル
+- 追加する文書は `docs/` 配下に置く
+- 既存の分類に合わない場合は、必要に応じてディレクトリを見直す
+- スライドを書く場合は `docs/marp/` と `themes/` を使う
+- 長文を書いたあとに `npm run lint:fix` を先に通すと差分を整理しやすい
 
-## ディレクトリ構造
+## 関連ドキュメント
 
-```text
-knowledge-share/
-├── .vscode/              # VS Code設定
-│   ├── settings.json     # エディタ設定
-│   └── extensions.json   # 推奨拡張機能
-├── docs/                 # ドキュメント
-├── .prettierrc.json      # Prettier設定
-├── .markdownlint.json    # Markdownlint設定
-├── .prettierignore       # Prettierignore設定
-├── .gitignore           # Git除外設定
-├── package.json         # プロジェクト設定
-└── README.md           # このファイル
-```
-
-## 貢献方法
-
-1. フォークしてください
-2. フィーチャーブランチを作成してください (`git checkout -b feature/amazing-feature`)
-3. 変更をコミットしてください (`git commit -m 'Add some amazing feature'`)
-4. ブランチにプッシュしてください (`git push origin feature/amazing-feature`)
-5. プルリクエストを開いてください
-
-## ライセンス
-
-このプロジェクトはMITライセンスの下で公開されています。詳細は
-[LICENSE](LICENSE)ファイルを参照してください。
+- [docs/README.md](docs/README.md)
+- [docs/guides/writing-guide.md](docs/guides/writing-guide.md)
+- [docs/tutorials/markdown-basics.md](docs/tutorials/markdown-basics.md)
+- [docs/marp/README.md](docs/marp/README.md)
